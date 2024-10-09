@@ -1,0 +1,113 @@
+#include <stdio.h>
+
+#define ESPRESSO 1
+#define CAPPUCCINO 2
+#define MOCHA 3
+
+#define ESPRESSO_BEANS 8
+#define CAPPUCCINO_BEANS 8
+#define MOCHA_BEANS 39
+
+#define ESPRESSO_WATER 30
+#define CAPPUCCINO_WATER 70
+#define MOCHA_WATER 160
+
+#define ESPRESSO_MILK 0
+#define CAPPUCCINO_MILK 70
+#define MOCHA_MILK 30
+
+#define ESPRESSO_CHOCOLATE 0
+#define CAPPUCCINO_CHOCOLATE 0
+#define MOCHA_CHOCOLATE 30
+
+#define ESPRESSO_PRICE 3.5
+#define CAPPUCCINO_PRICE 4.5
+#define MOCHA_PRICE 5.5
+
+int coffeeBeans = 100;
+int water = 1000;      
+int milk = 500;        
+int chocolateSyrup = 100;
+
+#define MIN_BEANS 10
+#define MIN_WATER 100
+#define MIN_MILK 50
+#define MIN_CHOCOLATE 10
+
+int main() {
+    int choice;
+    int confirmation;
+    float COIN;
+    float CHANGE;
+    while (1) {
+        printf("Pick an item: ESPRESSO(1), CAPPUCCINO(2), MOCHA(3): ");
+        scanf("%d", &choice);
+
+        if (choice == ESPRESSO) {
+            if(water >= ESPRESSO_WATER && coffeeBeans >= ESPRESSO_BEANS) {
+                printf("CONFIRM ESPRESSO: (Y(1)/N(2))?\n");
+                scanf("%d", &confirmation);
+                if (confirmation == 1) {
+                    printf("You have chosen Espresso, price: %.2f\n", ESPRESSO_PRICE);
+                    printf("input coins only 1 and half dirhams are accepted\n");
+                    scanf("%f",&COIN);
+                    while(COIN < ESPRESSO_PRICE){
+                        printf("input more coins\n");
+                        scanf("%f",&COIN);
+                    }
+                    if(COIN == ESPRESSO_PRICE) {
+                        printf("Enjoy!\n");
+                        water -= ESPRESSO_WATER;
+                        coffeeBeans -= ESPRESSO_BEANS;
+                    } else if(COIN > ESPRESSO_PRICE) {
+                        CHANGE = COIN - ESPRESSO_PRICE;
+                        printf("Your change is: %.2f\n", CHANGE);
+                        water -= ESPRESSO_WATER;
+                        coffeeBeans -= ESPRESSO_BEANS;
+                    } else {
+                        printf("Insufficient funds");
+                    }
+                    break; 
+                }
+            } else {
+                printf("Insufficient ingredients\n");
+            }
+        } else if (choice == CAPPUCCINO) {
+            if(water >= CAPPUCCINO_WATER && coffeeBeans >= CAPPUCCINO_BEANS && milk >= CAPPUCCINO_MILK) {
+                printf("CONFIRM CAPPUCCINO: (Y(1)/N(2))?\n");
+                scanf("%d", &confirmation);
+                if (confirmation == 1) {
+                    printf("You have chosen Cappuccino, price: %.2f\n", CAPPUCCINO_PRICE);
+                    printf("input coins only 1 and half dirhams are accepted\n");
+                    scanf("%f",&COIN);
+                    while(COIN < CAPPUCCINO_PRICE){
+                        printf("input more coins\n");
+                        scanf("%f",&COIN);
+                    }
+                    if(COIN == CAPPUCCINO_PRICE) {
+                        printf("Enjoy!\n");
+                        water -= CAPPUCCINO_WATER;
+                        coffeeBeans -= CAPPUCCINO_BEANS;
+                        milk -= CAPPUCCINO_MILK;
+                    } else if(COIN > CAPPUCCINO_PRICE) {
+                        CHANGE = COIN - CAPPUCCINO_PRICE;
+                        printf("Your change is: %.2f\n", CHANGE);
+                        water -= CAPPUCCINO_WATER;
+                        coffeeBeans -= CAPPUCCINO_BEANS;
+                        milk -= CAPPUCCINO_MILK;
+                    } else {
+                        printf("Insufficient funds");
+                    }
+                    break;  
+                }
+            } else {
+                printf("Insufficient ingredients\n");
+            }
+        } else if (choice == MOCHA) {
+            if(water >= MOCHA_WATER && coffeeBeans >= MOCHA_BEANS && milk >= MOCHA_MILK && chocolateSyrup >= MOCHA_CHOCOLATE) {
+                printf("CONFIRM MOCHA: (Y(1)/N(2))?\n");
+                scanf("%d", &confirmation);
+                if (confirmation == 1) {
+                    printf("You have chosen Mocha, price: %.2f\n", MOCHA_PRICE);
+                    printf("input coins only 1 and half dirhams are accepted\n");
+                   
